@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Spring Boot Thymeleaf Hello World Example</title>
+    <title>Smart Uploader</title>
 
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
 
@@ -16,6 +16,10 @@
     <a class="navbar-brand" href="#" th:text="${familyname}"></a>
 </nav>
 
+<ul>
+    <li><a th:href="@{/uploadOneFile}">Upload One File Example</a></li>
+    <li><a th:href="@{/uploadMultiFile}">Upload Multiple Files Example</a></li>
+</ul>
 <main role="main" class="container">
 
     <div class="starter-template">
@@ -25,9 +29,7 @@
         </h2>
     </div>
 
- <!--   <ol>
-        <li th:each="task : ${tasks}" th:text="${task}"></li>
-    </ol>-->
+    <a th:href="@{fileUploader}">To the Uploader</a>
 
 </main>
 <!-- /.container -->
