@@ -90,12 +90,27 @@ public class FileUploadController {
                     // final folder can be changed here
                     File serverFile = new File(uploadRootDir.getAbsolutePath() + File.separator + name);
 
+                    //TODO
+                    //read all existing folders
+                    //TODO
+                    //search for fitting folders by using Tika
+                    List<String> folders = new ArrayList<>();
+                    folders.add("test");
+                    folders.add("skkr");
+                    folders.add("buurrr");
+                    folders.add("allocator");
+                    folders.add("final");
+                    folders.add("ok");
+
                     BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
                     stream.write(fileData.getBytes());
                     stream.close();
+                    InputStream inputStream = new BufferedInputStream(new FileInputStream(serverFile));
+                    //Folders which contain the text
+                    TikaAnalysis.checkForFittingFolders(folders, TikaAnalysis.extractContent(inputStream)).stream().forEach(System.out::println);
                     //
                     uploadedFiles.add(serverFile);
-                    System.out.println("Write file: " + serverFile + "\t type: " + TikaAnalysis.detectDocType(new BufferedInputStream(new FileInputStream(serverFile))));
+                    System.out.println("Write file: " + serverFile + "\t type: " + TikaAnalysis.detectDocType(inputStream));
                 } catch (Exception e) {
                     System.out.println("Error Write file: " + name);
                     failedFiles.add(name);
